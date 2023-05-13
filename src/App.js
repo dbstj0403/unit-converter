@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import React, { useState } from "react"
 import './App.css';
+import MinutesToHours from "./components/MinutesToHours";
+import KmToMiles from "./components/KmToMiles";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const [index, setIndex]=useState("xx");
+  const onSelect = (e)=>{
+    setIndex(e.target.value);
+  }
+  return(
+  <div>
+  <h1>Super Converter</h1>
+ 
+  <select value={index} onChange={onSelect}>
+    <option value="xx">Select your unit!</option>
+    <option value="0">Minetes & Hours</option>
+    <option value="1">Km & Miles</option>
+  </select>
+  {index === "0" ? <MinutesToHours/> : null};
+  {index === "1" ? <KmToMiles/> : null}
+  </div>
   );
+
 }
 
 export default App;
